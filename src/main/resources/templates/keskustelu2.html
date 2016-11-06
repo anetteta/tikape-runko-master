@@ -1,0 +1,113 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Keskustelut</title>
+        <meta charset="utf-8" />
+<style>
+footer{   
+    position:fixed;
+    bottom:0;
+    width:100%;
+    height:45px;
+    background-color:#49283a;
+    font-size: 14px;
+    text-align: center;
+    color: #9b8a7f;
+}
+
+#content{ 
+    padding:10px; 
+    padding-bottom:60px;
+    font-size: 13px;   
+}
+
+#form{ 
+  margin-left: 20px;
+}
+
+table {
+    width: 50px;
+    font-size: 13px;    
+}
+
+th, td {
+    border-bottom: 1px solid #ddd;
+    padding: 20px;
+    text-align: left;
+    max-width: 500px;
+    word-wrap: break-word;
+}
+
+#header{
+    background-color: #9b8a7f;
+    width: 100%;    
+    left: 0;
+    top: 0;
+    height: 5%;
+    font-size: 18px;
+    font-weight: bold;
+    padding:10px;   
+    color: maroon;
+}
+
+body{
+    margin:0;
+    padding:0;
+    height:100%;
+    margin-top: -1%;
+    font-family: Verdana, sans-serif;   
+}
+
+#otsikot{
+    font-size: 13px;
+}
+
+#kokoBody{
+   margin-bottom: -45px; 
+}
+
+footer {
+    bottom:0;
+    width:100%;
+    height:45px; 
+    background-color:#49283a;
+    font-size: 14px;
+    text-align: center;
+    color: #9b8a7f;
+}
+
+#teksti {
+    padding: 20px;
+}
+</style>
+    </head>         
+    <body bgcolor="#fff4e6">
+        <div id="kokoBody">
+            <article><header><div id="header" th:with="firstPer=${keskustelut[0]}">
+                <br/><p><a style='color: maroon;' th:href="${'/'}">KESKUSTELUFOORUMI</a> > <span th:text="${firstPer.nimi}"></span></p> 
+                </div></header>
+                <div id ="content">
+                    
+                <div th:with="firstPer=${keskustelut[0]}">
+                    <p id="teksti">Alue <span th:text="${firstPer.nimi}"></span> on viela tyhja. Aloita uusi keskustelu!</p>
+                </div>
+                    <form method="POST"  action="/lisaaKeskustelu" th:object="${keskustelu}">
+                    <div id ="form">
+                        <h3> Luo uusi keskustelu </h3>   
+                        <p>Keskustelun otsikko</p>
+                        <input type="text" name="keskustelu_otsikko"/><br/>
+                        <p>Nimimerkki</p>
+                        <input type="text" name="nimimerkki"/><br/>
+                        <p>Keskustelunavaus</p>
+                        <textarea name="viesti" cols="120" rows="15"></textarea><br/>
+                        <input type="submit" value="Aloita keskustelu!"/>
+                    </div>
+                    </form>            
+                </div>
+                </article>
+                <div id="footer">
+                    <footer id="footer" class="footer"><p align="center">Tietokantojen perusteet syksy 2016 ||  Keskustelufoorumi harjoitustyo || Tekija: Anette Taskinen</p> </footer>
+                </div></div>
+    </body>        
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Keskustelufoorumi</title>
+        <meta charset="utf-8" />
+        <style>
+            
+
+            
+#header{
+    background-color: #9b8a7f;
+    width: 100%;    
+    left: 0;
+    top: 0;
+    height: 5%;
+    font-size: 18px;
+    font-weight: bold;
+    padding:10px;   
+    color: maroon;
+}
+body{
+    margin:0;
+    padding:0;
+    height:100%;
+    margin-top: -1%;
+    font-family: Verdana, sans-serif;
+    margin-bottom: 45px;
+}
+article {
+    padding-bottom: 100px;
+}
+#content {
+    margin-bottom: 45px; 
+    min-height:100%;
+    min-width: 100%;
+        
+}
+
+table {
+    width: 100%;
+    
+    
+    
+    
+}
+th, td {
+    border-bottom: 1px solid #ddd;
+    padding: 15px;
+    text-align: left;
+    max-width: 500px;
+    word-wrap: break-word;
+}
+
+form {
+    font-size: 13px;
+   
+}
+#body{
+    padding:10px; 
+    padding-bottom:60px;
+    padding-right: 50px;
+    margin-left: 20px;
+    font-size: 13px;
+}
+footer {
+    position: fixed;
+    bottom:0;
+    width:100%;
+    height:45px; 
+    background-color:#49283a;
+    font-size: 14px;
+    text-align: center;
+    color: #9b8a7f;
+}
+#formDiv {
+   
+}
+#viestiBoksi {
+    height: 200px; 
+    width: 200px;
+}
+#id2{
+    float:right;
+    margin-top: 5px;
+}
+#id1{
+    float:left;
+    margin-top: 5px;
+}
+#aa {
+    min-width: 70%;
+}
+#bb{
+    padding-left: 20px;
+}
+a {
+  color: maroon;
+  
+}
+    </style>
+    </head>        
+    <body bgcolor="#fff4e6">
+            <div id="content" >
+            <article><header><div id="header" th:with="firstPer=${viestit[0]}">
+                <br/><p><a th:href="${'/'}">KESKUSTELUFOORUMI</a> / <a th:href="${'/alue/' + firstPer.alueId}"><span th:text="${firstPer.alueNimi}"></span></a> / <span th:text="${firstPer.otsikko}"></span></p>
+                </div></header>
+                    <div id="body">
+                        <div id ="taulu">
+                            <table>
+                                <tr>
+                                    <th>Nimimerkki </th>
+                                    <th>Viesti</th>
+                                    <th id="bb">Viesti lahetetty </th>
+                                </tr>
+                                <tr th:each="viesti:${viestit}">   
+                                    <td th:text="${viesti.nimimerkki}">yes</td>
+                                    <td id="aa" th:text="${viesti.viesti}">2.41</td>
+                                    <td id= "bb" th:text="${viesti.aika}"></td>
+                                </tr>
+                            </table>
+                        </div><br/>
+                        <div id="formDiv">
+                            <form method="POST"  action="/edellinenAlue" >
+                                <input id="id1" type="submit" value="edelliset 10 viestia" name="next"/><br/>
+                            </form>
+                            <form method="POST"  action="/seuraavaAlue" >
+                                <input id="id2" type="submit" value="seuraavat 10 viestia" name="next"/><br/>     
+                            </form>        
+                            <form method="POST"  action="/lisaaViesti" autocomplete="off" >
+                                <p style="padding-bottom: 2px">Nimimerkki</p><input type="text" name="nimimerkki"/><br/>
+                                <p style="padding-bottom: 2px">Viesti</p><textarea name="viesti" cols="120" rows="15"></textarea><br/>
+                                <input style="margin-top: 5px;" type="submit" value="Laheta viesti!"/><br/>                           
+                            </form>
+     
+        
+                        </div>
+            
+                    </div><div id="footer">
+                        <footer><p align="center">Tietokantojen perusteet syksy 2016 ||  Keskustelufoorumi harjoitustyo || Tekija: Anette Taskinen</p> </footer>
+                    </div>
+    
+            </article></div>
+    </body>
+</html>
+
+<script>
+    function func(){       
+       location.reload();}
+</script>

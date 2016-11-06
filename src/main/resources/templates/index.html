@@ -1,0 +1,121 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    
+
+    <head>
+        <style>
+            
+   article{
+        
+    }
+footer{
+    
+    position:fixed;
+    bottom:0;
+    width:100%;
+    height:45px;
+    background-color:#49283a;
+    font-size: 14px;
+    text-align: center;
+    color: #9b8a7f;
+}
+
+
+table {
+    width: 40%px;
+    font-size: 13px;
+}
+th, td {
+    border-bottom: 1px solid #ddd;
+    padding: 15px;
+    text-align: left;
+    min-width: 7%;
+}
+
+#content{ 
+    padding:10px; 
+    padding-bottom:60px;
+    font-size: 13px;
+    margin-left: 20px;
+    
+}
+
+#form{
+ 
+  
+   
+}
+
+#header{
+    background-color: #9b8a7f;
+    width: 100%;    
+    left: 0;
+    top: 0;
+    height: 5%;
+    font-size: 18px;
+    font-weight: bold;
+    padding:10px;   
+    color: maroon;
+}
+
+
+body{
+    margin:0;
+    padding:0;
+    height:100%;
+    margin-top: -1%;
+    font-family: Verdana, sans-serif;
+    
+}
+#otsikot{
+    font-size: 13px;
+}
+#kokoBody{
+   margin-bottom: -45px; 
+}
+footer {
+    bottom:0;
+    width:100%;
+    height:45px; 
+    background-color:#49283a;
+    font-size: 14px;
+    text-align: center;
+    color: #9b8a7f;
+}
+        </style>
+        <title>Alueet</title>
+        <meta charset="utf-8" />
+        </head>
+        <body bgcolor="#fff4e6">
+        <div id="kokoBody">
+            <article> <div id="header"><header><br/><p>KESKUSTELUFOORUMI</p></header></div>
+                <div id="content">                    
+                   
+                    <div id ="taulu">
+                    <table>
+                        <tr><th width="200">Alueen nimi</th>
+                            <th width="200">Viesteja alueella</th>
+                            <th width="200">Viimeisin viesti</th>
+                        </tr>
+                        <tr th:each="alue:${alueet}">
+                           <td> <a th:href="${'/alue/' + alue.id}"> <div style="height:100%;width:100%"> 
+                                <span th:text="${alue.nimi}"/></div></a></td> 
+                            <td th:text="${alue.maara}"/>
+                            <td th:text="${alue.uusinAika}"/>
+                        </tr>
+                    </table>
+                    </div>                   
+                  <form method="POST" action="/lisaaAlue"><div id="forum">
+                    <h3>Luo uusi alue</h3>
+                        <p>Alueen nimi</p>
+                        <input type="text" name="nimi"/> <br/> <input style="margin-top: 5px;" type="submit"  value="Luo alue"/>
+                      </div> </form>
+            </div>
+            </article>
+            <div id="footer">
+                <footer id="footer" class="footer"><p align="center">Tietokantojen perusteet syksy 2016 ||  Keskustelufoorumi harjoitustyo || Tekija: Anette Taskinen</p> </footer>
+            </div></div> 
+        </body>
+    
+</html>
