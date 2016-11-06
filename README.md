@@ -1,5 +1,3 @@
-# tikape-runko
-
-Tietokantojen perusteet -kurssilla tehtävän web-sovelluksen pohja.
+#Tietokantojen perusteet -kurssin harjoitustyö.
 
 "# TikapeFoorumi" 
